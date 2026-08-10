@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пусконаладочные работы систем вентиляции | ВентНаладка</title>
+    <meta name="description" content="Профессиональные пусконаладочные работы систем вентиляции и кондиционирования. Гарантия, протоколы, быстрый запуск.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0d6efd;
+            --primary-dark: #0a58ca;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.35rem;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav a {
+            margin-left: 28px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary) !important;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white !important;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            color: white;
+            padding: 100px 0 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(13,110,253,0.25) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        section { padding: 80px 0; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: #e0edff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .benefits { background: var(--light); }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-item { text-align: center; }
+
+        .benefit-item .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .benefit-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            counter-reset: step;
+        }
+
+        .step {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .step h3 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 1.15rem;
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ===== Портфолио ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-image {
+            height: 220px;
+            overflow: hidden;
+            background: #e2e8f0;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.06);
+        }
+
+        .portfolio-content {
+            padding: 24px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-tag {
+            display: inline-block;
+            background: #e0edff;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #0a58ca 100%);
+            color: white;
+            text-align: center;
+            padding: 70px 0;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact { background: var(--light); }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #form-status {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+            min-height: 24px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { display: none; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+            .hero-buttons .btn { text-align: center; }
+            .logo-text { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="ВентНаладка">
+                <div class="logo-text">Вент<span>Наладка</span></div>
+            </a>
+            <nav>
+                <a href="#services">Услуги</a>
+                <a href="#process">Этапы</a>
+                <a href="#portfolio">Портфолио</a>
+                <a href="#benefits">Преимущества</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+            <a href="#contact" class="btn">Оставить заявку</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">✓ Работаем по Москве и Московской области</div>
+                <h1>Пусконаладочные работы систем вентиляции</h1>
+                <p>Профессиональный запуск, настройка и испытания вентиляционных систем любой сложности. Полный пакет документов и гарантия результата.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">Получить консультацию</a>
+                    <a href="#services" class="btn btn-outline">Наши услуги</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Что мы делаем</h2>
+                <p>Полный комплекс пусконаладочных работ систем вентиляции и кондиционирования</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Пусконаладка вентиляции</h3>
+                    <p>Комплексная настройка приточных, вытяжных и приточно-вытяжных систем. Проверка всех режимов работы.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Аэродинамические испытания</h3>
+                    <p>Измерение расходов воздуха, напоров, проверка балансировки сети. Составление актов и протоколов.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Настройка автоматики</h3>
+                    <p>Программирование контроллеров, настройка датчиков, частотных преобразователей и систем диспетчеризации.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Исполнительная документация</h3>
+                    <p>Полный пакет документов: акты, протоколы, паспорта систем, рекомендации по эксплуатации.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Диагностика и поиск неисправностей</h3>
+                    <p>Выявление причин неэффективной работы систем, шума, недостаточного воздухообмена.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Объекты любой сложности</h3>
+                    <p>Жилые комплексы, офисы, склады, производства, торговые центры, медицинские учреждения.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Почему выбирают нас</h2>
+                <p>Мы специализируемся именно на пусконаладке вентиляционных систем</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="number">10+</div>
+                    <h3>лет опыта</h3>
+                    <p>Работаем с 2012 года на объектах разной сложности</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="number">300+</div>
+                    <h3>объектов</h3>
+                    <p>Успешно сданных в эксплуатацию систем вентиляции</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="number">100%</div>
+                    <h3>документов</h3>
+                    <p>Полный комплект исполнительной документации</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="number">24/7</div>
+                    <h3>поддержка</h3>
+                    <p>Консультации после сдачи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Как мы работаем</h2>
+                <p>Прозрачный процесс от заявки до сдачи объекта</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <h3>Заявка и выезд</h3>
+                    <p>Получаем техническое задание, выезжаем на объект, оцениваем объём работ</p>
+                </div>
+                <div class="step">
+                    <h3>Коммерческое предложение</h3>
+                    <p>Готовим детальную смету и сроки выполнения пусконаладочных работ</p>
+                </div>
+                <div class="step">
+                    <h3>Выполнение работ</h3>
+                    <p>Проводим наладку, испытания, балансировку и настройку автоматики</p>
+                </div>
+                <div class="step">
+                    <h3>Сдача и документы</h3>
+                    <p>Передаём полный пакет актов, протоколов и обучаем персонал</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПОРТФОЛИО ===== -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши объекты</h2>
+                <p>Примеры выполненных пусконаладочных работ систем вентиляции</p>
+            </div>
+            <div class="portfolio-grid">
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/1.webp" 
+                             alt="Пусконаладка вентиляции в бизнес-центре Северная Башня" 
+                             loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Литейный комплекс, г. Тула</h3>
+                        <p>Полная пусконаладка приточно-вытяжных систем и автоматики.</p>
+                        <p>Вентиляционные системы 400+ штук<br>ООО «Газпром энергохолдинг литейные технологии»</p>
+                        <span class="portfolio-tag">Производство</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/2.webp" 
+                             alt="Аэродинамические испытания на производстве" 
+                             loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Электродепо «Аминьевское», г. Москва</h3>
+                        <p>Аэродинамические испытания и балансировка промышленной вентиляции</p>
+                        <p>Вентиляционные системы 700+ штук<br>АО "ГК"ЕКС"</p>
+                        <span class="portfolio-tag">Производство</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/3.webp" 
+                             alt="Пусконаладка вентиляции в торговом центре" 
+                             loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Реконструкция очистных сооружений г.Троицк</h3>
+                        <p>Полная пусконаладка приточно-вытяжных систем и автоматики.</p>
+                        <p>АО "Мосводоканал"</p>
+                        <span class="portfolio-tag">Торговый центр</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/4.webp" 
+                             alt="Вентиляция кухонных помещений бара" 
+                             loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>"ЦСКА АРЕНА" г. Москва</h3>
+                        <p>Реконструкция ВИП ложи. Пусконаладка кухонных помещений и систем общеобменной вентиляции</p>
+                        <span class="portfolio-tag">Общепит</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/5.webp" 
+                             alt="Вентиляция паркинга жилого комплекса" 
+                             loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Учебный корпус на 400 мест, г.Москва, ул. Генерала Глаголева</h3>
+                        <p>Наладка общеобменной вентиляции и систем дымоудаления</p>
+                        <p>АО "ГК"ЕКС"</p>
+                        <span class="portfolio-tag">Учебный комплекс</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/6.webp" 
+                             alt="Системы дымоудаления складского комплекса" 
+                             loading="lazy">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Реконструкция Щелковских очистных сооружений</h3>
+                        <p>Пусконаладка систем дымоудаления и приточной вентиляции</p>
+                        <p>АО "ГК"ЕКС"</p>
+                        <span class="portfolio-tag">Производство</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Нужна пусконаладка вентиляции?</h2>
+            <p>Оставьте заявку прямо сейчас — перезвоним в течение 30 минут и бесплатно проконсультируем</p>
+            <a href="#contact" class="btn" style="background: white; color: var(--primary) !important;">Оставить заявку</a>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Оставить заявку</h2>
+                <p>Заполните форму — мы свяжемся с вами в ближайшее время</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Контактная информация</h3>
+                    <p>Работаем по всей России. Выезд инженера на объект — бесплатно при заключении договора.</p>
+                    
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>+7 (999) 123-45-67</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <span>info@ventnaladka.ru</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Москва и регионы</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🕐</span>
+                        <span>Пн–Пт: 9:00–19:00</span>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <form id="contact-form" name="contact-form">
+                        <div class="form-group">
+                            <label>Ваше имя *</label>
+                            <input type="text" name="name" required placeholder="Иван Иванов">
+                        </div>
+                        <div class="form-group">
+                            <label>Телефон *</label>
+                            <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <div class="form-group">
+                            <label>Тип объекта</label>
+                            <select name="object_type">
+                                <option value="">Выберите...</option>
+                                <option>Жилой дом / ЖК</option>
+                                <option>Офис / Бизнес-центр</option>
+                                <option>Производство / Склад</option>
+                                <option>Торговый центр</option>
+                                <option>Медицинское учреждение</option>
+                                <option>Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Комментарий</label>
+                            <textarea name="comment" placeholder="Кратко опишите задачу или объект"></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;" id="submit-btn">Отправить заявку</button>
+                        <p id="form-status"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024–2026 ВентНаладка. Пусконаладочные работы систем вентиляции. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ================== ВАЖНО ==================
+        // Замените на свой URL из Google Apps Script
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyfMyDUU-Xj8Jb4LJnmFi3IEC7m6439km02dwraz5COWzJhwliXF0fC79PFEl76eVG_mg/exec'
+        // ==========================================
+
+        const form = document.getElementById('contact-form')
+        const status = document.getElementById('form-status')
+        const btn = document.getElementById('submit-btn')
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            
+            btn.disabled = true
+            btn.textContent = 'Отправка...'
+            status.textContent = ''
+            status.style.color = ''
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form)
+            })
+            .then(response => {
+                status.style.color = '#10b981'
+                status.textContent = '✓ Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
+                form.reset()
+            })
+            .catch(error => {
+                status.style.color = '#ef4444'
+                status.textContent = 'Ошибка отправки. Попробуйте ещё раз или позвоните нам.'
+                console.error('Error!', error.message)
+            })
+            .finally(() => {
+                btn.disabled = false
+                btn.textContent = 'Отправить заявку'
+            })
+        })
+    </script>
+
+</body>
+</html>
